@@ -3,26 +3,28 @@
 class Contactos{
     private $db;
     private $id;
+    private $usuario_id;
     private $nombre;
+    private $telefono;
     private $email;
-    private $clave;
     private $fecha;
+    private $contactos=[];
 
     public function __construct($db){
         $this->db=$db;
     }
 
-    public function iniciarSesion($email, $clave){
-        $query="SELECT * FROM usuarios WHERE email = ? AND clave = ?";
+    public function getAll(){
+        $query="SELECT * FROM contactos";
         $stmt=$this->db->prepare($query);
-        $stmt->execute([$email, $clave]);
-        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt->execute();
+        return $contactos=$stmt->fetchAll(PDO::FETH_ASSOC);
     }
 
-    public function registrar($nombre, $email, $clave, $fecha){
-        $query="INSERT INTO usuarios (nombre, email, clave, fecha_creacion) VALUES (?, ?, ?, ?)";
+    public function insertar($usuario_id, $nombre, $telefono, $email, $fecha){
+        $query="INSERT INTO usuarios (usuario_id, nombre, telefono, email, fecha_creacion) VALUES (?, ?, ?, ?, ?)";
         $stmt=$this->db->prepare($query);
-        return $stmt->execute([$nombre, $email, $clave, $fecha]);
+        return $stmt->execute([$usuario_id, $nombre, $telefono, $email, $fecha]);
     }
 
     public function getID($id){
@@ -30,6 +32,12 @@ class Contactos{
         $stmt=$this->db->prepare($query);
         $stmt->execute([$id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function eliminar($id){
+        $query="DELETE FROM contactos WHERE id =?";
+        $stmt=$this->db->prepare($query);
+        $stmt->execute([$id]);
     }
 }
 

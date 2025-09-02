@@ -1,6 +1,6 @@
 <?php
 
-class Users{
+class Usuarios{
     private $db;
     private $id;
     private $nombre;
@@ -30,5 +30,9 @@ class Users{
         $stmt=$this->db->prepare($query);
         $stmt->execute([$id]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+    public function cerrarSesion(){
+        
     }
 }
