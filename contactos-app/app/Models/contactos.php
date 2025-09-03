@@ -40,8 +40,3 @@ class Contactos{
         $stmt->execute([$id]);
     }
 }
-
-require '../../config/database.php';
-$cx=new Conexion();
-$persona=new Users($cx->conectar());
-$persona->registrar('Jorge', 'jorge@example.com', 'jorge', '2025-08-26');
