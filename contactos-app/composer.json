@@ -1,0 +1,18 @@
+{
+    "name": "mvc/contactos-app",
+    "description": "aplicación de gestión de contactos con patrón de diseño mvc",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Mvc\\ContactosApp\\": "app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "carlos",
+            "email": "futbolalucar@gmail.com"
+        }
+    ],
+    "require": {}
+}

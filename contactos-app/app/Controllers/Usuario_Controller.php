@@ -1,6 +1,6 @@
 <?php
-require_once '../Models/Usuario.php';
-require_once '../Views/usuarios/form.php';
+
+namespace Mvc\ContactosApp\Controllers;
 
 class Usuario_Controller {
     private $usuarioModel;
@@ -17,7 +17,7 @@ class Usuario_Controller {
             if($usuario){
                 $_SESSION['usuario_id']=$usuario[0]['id'];
                 // Redirigir a la vista de usuario
-
+                
             }
         }
     }
