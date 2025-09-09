@@ -1,5 +1,8 @@
 <?php
-class Conexion{
+
+namespace App\Config;
+use PDO;
+class Database{
     public static function conectar(){
         try{
             $base=new PDO('mysql:host=localhost; dbname=contactos_app', 'root', '');

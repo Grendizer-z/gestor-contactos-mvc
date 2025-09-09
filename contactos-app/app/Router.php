@@ -1,9 +1,9 @@
 <?php
 
-namespace Mvc\ContactosApp;
+namespace App;
 
-use Mvc\ContactosApp\Controllers\Usuario_Controller;
-use Mvc\ContactosApp\Controllers\Contacto_Controller;
+use App\Controllers\UsuarioController;
+//use App\Controllers\Contacto_Controller;
 
 class Router
 {
@@ -12,7 +12,7 @@ class Router
 
     public function __construct()
     {
-        $this->userController = new Usuario_Controller();
+        $this->userController = new UsuarioController();
         $this->defineRoutes();
     }
 
@@ -20,6 +20,11 @@ class Router
     {
         // Rutas para usuarios
         $this->routes = [
+            'GET' => [
+                '/' => [$this->userController, 'index'],
+                '/users' => [$this->userController, 'index'],
+                '/users/create' => [$this->userController, 'create'],
+                '/users/edit/{id}' => [$this->userController, 'edit']],
             'POST' => [
                 '/usuarios/login' => [$this->userController, 'login'],
                 '/usuarios/registrar' => [$this->userController, 'registrar'],

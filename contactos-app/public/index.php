@@ -1,5 +1,7 @@
 <?php
 require __DIR__ . '/../vendor/autoload.php';
-
-use Mvc\ContactosApp\Controllers\ContactoController;
-
+use App\Router;
+echo 'inicio';
+$router=new Router();
+$router->dispatch();
+//var_dump($router);

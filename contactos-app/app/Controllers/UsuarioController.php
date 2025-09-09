@@ -1,24 +1,24 @@
 <?php
+namespace App\Controllers;
 
-namespace Mvc\ContactosApp\Controllers;
-
-class Usuario_Controller {
+use App\Models\Usuario;
+session_start();
+class UsuarioController {
     private $usuarioModel;
     public function __construct() {
         $this->usuarioModel = new Usuario();
     }
 
     public function login($email, $clave){
-        session_start();
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $email = $_POST['email'];
             $clave = $_POST['clave'];
             $usuario=$this->usuarioModel->iniciarSesion($email, $clave);
-            if($usuario){
-                $_SESSION['usuario_id']=$usuario[0]['id'];
+            //if($usuario){
+                //$_SESSION['usuario_id']=$usuario[0]['id'];
                 // Redirigir a la vista de usuario
                 
-            }
+            //}
         }
     }
 

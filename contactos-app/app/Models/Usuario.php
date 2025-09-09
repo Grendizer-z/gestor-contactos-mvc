@@ -1,6 +1,9 @@
 <?php
 
-class Usuarios{
+namespace App\Models;
+use App\Config\Database;
+
+class Usuario{
     private $db;
     private $id;
     private $nombre;
@@ -8,8 +11,8 @@ class Usuarios{
     private $clave;
     private $fecha;
 
-    public function __construct($db){
-        $this->db=$db;
+    public function __construct(){
+        $this->db=new Database();
     }
 
     public function iniciarSesion($email, $clave){
