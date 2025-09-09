@@ -9,7 +9,7 @@ class UsuarioController {
         $this->usuarioModel = new Usuario();
     }
 
-    public function login($email, $clave){
+    public function login(){
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $email = $_POST['email'];
             $clave = $_POST['clave'];
