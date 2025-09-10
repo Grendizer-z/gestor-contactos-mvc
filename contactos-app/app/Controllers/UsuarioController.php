@@ -10,6 +10,7 @@ class UsuarioController {
     }
 
     public function login(){
+        $this->render('usuarios/index');
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $email = $_POST['email'];
             $clave = $_POST['clave'];
@@ -26,4 +27,15 @@ class UsuarioController {
         $this->usuarioModel->registrar($nombre, $email, $clave, $fecha);
     }
     
+    private function render($view, $data = [])
+    {
+        extract($data);
+        $viewPath = __DIR__ . '/../Views/' . $view . '.php';
+
+        if (file_exists($viewPath)) {
+            include $viewPath;
+        } else {
+            echo "Vista no encontrada: " . $view;
+        }
+    }
 }

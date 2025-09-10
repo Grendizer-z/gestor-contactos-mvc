@@ -1,4 +1,7 @@
 <?php
+namespace App\Models;
+use App\Config\Database;
+//session_start();
 
 class Contactos{
     private $db;
@@ -10,15 +13,15 @@ class Contactos{
     private $fecha;
     private $contactos=[];
 
-    public function __construct($db){
-        $this->db=$db;
+    public function __construct(){
+        $this->db=new Database();
     }
 
     public function getAll(){
         $query="SELECT * FROM contactos";
         $stmt=$this->db->prepare($query);
         $stmt->execute();
-        return $contactos=$stmt->fetchAll(PDO::FETH_ASSOC);
+        return $stmt->fetchAll(PDO::FETH_ASSOC);
     }
 
     public function insertar($usuario_id, $nombre, $telefono, $email, $fecha){

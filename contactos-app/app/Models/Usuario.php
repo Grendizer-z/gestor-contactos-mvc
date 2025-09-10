@@ -3,6 +3,7 @@
 namespace App\Models;
 use App\Config\Database;
 
+
 class Usuario{
     private $db;
     private $id;
@@ -36,6 +37,9 @@ class Usuario{
     }
 
     public function cerrarSesion(){
-        
+        $_SESSION=[];
+        session_destroy();
+        header('Location: ');
+        exit;
     }
 }

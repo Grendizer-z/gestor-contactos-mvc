@@ -3,7 +3,7 @@
 namespace App;
 
 use App\Controllers\UsuarioController;
-//use App\Controllers\Contacto_Controller;
+use App\Controllers\ContactoController;
 
 class Router
 {
@@ -13,6 +13,7 @@ class Router
     public function __construct()
     {
         $this->userController = new UsuarioController();
+        $this->contactController=new ContactoController();
         $this->defineRoutes();
     }
 
@@ -21,12 +22,12 @@ class Router
         // Rutas para usuarios
         $this->routes = [
             'GET' => [
-                '/' => [$this->userController, 'index'],
-                '/users' => [$this->userController, 'index'],
-                '/users/create' => [$this->userController, 'create'],
-                '/users/edit/{id}' => [$this->userController, 'edit']],
+                '/crud-poo/contactos-app/public' => [$this->userController, 'login'],
+                '/usuarios' => [$this->userController, 'index'],
+                '/usuarios/create' => [$this->userController, 'create'],
+                '/usuarios/edit/{id}' => [$this->userController, 'edit']],
             'POST' => [
-                '/usuarios/login' => [$this->userController, 'login'],
+                '/crud-poo/contactos-app/public' => [$this->userController, 'login'],
                 '/usuarios/registrar' => [$this->userController, 'registrar'],
             ]
         ];
@@ -48,6 +49,10 @@ class Router
             $this->executeRoute($this->routes[$method][$uri]);
             return;
         }
+
+        var_dump($this->routes[$method][$uri]);
+        echo "<br>";
+        exit;
 
         // Buscar rutas con parámetros
         foreach ($this->routes[$method] as $route => $handler) {
@@ -82,6 +87,10 @@ class Router
             } else {
                 $this->show404();
             }
+
+            //var_dump($method);
+            //exit;
+
         } elseif (is_callable($handler)) {
             call_user_func_array($handler, $params);
         } else {
@@ -94,6 +103,6 @@ class Router
         http_response_code(404);
         echo "<h1>404 - Página no encontrada</h1>";
         echo "<p>La página que buscas no existe.</p>";
-        echo "<a href='/users'>Volver al inicio</a>";
+        echo "<a href='../app/Views/usuarios'>Volver al inicio</a>";
     }
 }
