@@ -10,16 +10,17 @@ class UsuarioController {
     }
 
     public function login(){
-        $this->render('usuarios/index');
+        $this->render('usuarios/login');
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             $email = $_POST['email'];
             $clave = $_POST['clave'];
             $usuario=$this->usuarioModel->iniciarSesion($email, $clave);
-            //if($usuario){
-                //$_SESSION['usuario_id']=$usuario[0]['id'];
-                // Redirigir a la vista de usuario
-                
-            //}
+            if($usuario){
+                $_SESSION['usuario_id']=$usuario[0]['id'];
+                //Redirigir a la vista de usuarios
+                header('Location: ../contactos/index');
+                exit;
+            }
         }
     }
 

@@ -3,14 +3,17 @@
 namespace App\Config;
 use PDO;
 class Database{
-    public static function conectar(){
+    private $base;
+    public function __construct(){
         try{
-            $base=new PDO('mysql:host=localhost; dbname=contactos_app', 'root', '');
-            return $base;
+            $this->base=new PDO('mysql:host=localhost; dbname=contactos_app', 'root', '');
         }
         catch(Exception $e){
             die("Error: " . $e->getMessage());
-        }
-        
+        }   
+    }
+
+    public function conectar(){
+        return $this->base;
     }
 }

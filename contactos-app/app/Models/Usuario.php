@@ -14,11 +14,12 @@ class Usuario{
 
     public function __construct(){
         $this->db=new Database();
+        $this->connection=$this->db->conectar();
     }
 
     public function iniciarSesion($email, $clave){
         $query="SELECT * FROM usuarios WHERE email = ? AND clave = ?";
-        $stmt=$this->db->prepare($query);
+        $stmt=$this->connection->prepare($query);
         $stmt->execute([$email, $clave]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }

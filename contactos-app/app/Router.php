@@ -22,12 +22,12 @@ class Router
         // Rutas para usuarios
         $this->routes = [
             'GET' => [
-                '/crud-poo/contactos-app/public' => [$this->userController, 'login'],
+                '/' => [$this->userController, 'login'],
                 '/usuarios' => [$this->userController, 'index'],
                 '/usuarios/create' => [$this->userController, 'create'],
                 '/usuarios/edit/{id}' => [$this->userController, 'edit']],
             'POST' => [
-                '/crud-poo/contactos-app/public' => [$this->userController, 'login'],
+                '/contactos/index' => [$this->userController, 'login'],
                 '/usuarios/registrar' => [$this->userController, 'registrar'],
             ]
         ];

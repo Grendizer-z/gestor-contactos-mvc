@@ -1,0 +1,21 @@
+# Archivo .htaccess para el directorio public
+# Maneja el enrutamiento de la aplicación
+
+RewriteEngine On
+
+# Redirigir todas las solicitudes que no sean archivos o directorios existentes a index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php [QSA,L]
+
+# Configuraciones de seguridad adicionales
+<Files "*.php">
+    Order Allow,Deny
+    Allow from all
+</Files>
+
+# Denegar acceso directo a archivos de configuración
+<FilesMatch "\.(htaccess|htpasswd|ini|log|sh|inc|bak)$">
+    Order Allow,Deny
+    Deny from all
+</FilesMatch>
