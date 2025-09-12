@@ -9,6 +9,7 @@ class Router
 {
     private $routes = [];
     private $userController;
+    private $contactController;
 
     public function __construct()
     {
@@ -24,11 +25,18 @@ class Router
             'GET' => [
                 '/' => [$this->userController, 'login'],
                 '/usuarios' => [$this->userController, 'index'],
-                '/usuarios/create' => [$this->userController, 'create'],
-                '/usuarios/edit/{id}' => [$this->userController, 'edit']],
+                '/registrar' => [$this->userController, 'registrar'],
+                '/contactos/create' => [$this->contactController, 'create'],
+                '/contactos/edit/{id}' => [$this->contactController, 'edit'],
+                '/contactos/delete/{id}' => [$this->contactController, 'delete'],
+                '/contactos/index' => [$this->contactController, 'index'],
+                '/usuarios/login' => [$this->userController, 'logout']
+            ],
             'POST' => [
                 '/contactos/index' => [$this->userController, 'login'],
-                '/usuarios/registrar' => [$this->userController, 'registrar'],
+                '/registrar' => [$this->userController, 'registrar'],
+                '/contactos/create' => [$this->contactController, 'create'],
+                '/contactos/edit/{id}' => [$this->contactController, 'edit'],
             ]
         ];
     }
@@ -50,9 +58,8 @@ class Router
             return;
         }
 
-        var_dump($this->routes[$method][$uri]);
-        echo "<br>";
-        exit;
+        //var_dump($uri);
+        //exit;
 
         // Buscar rutas con parámetros
         foreach ($this->routes[$method] as $route => $handler) {

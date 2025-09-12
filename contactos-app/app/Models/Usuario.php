@@ -2,10 +2,11 @@
 
 namespace App\Models;
 use App\Config\Database;
-
+use PDO;
 
 class Usuario{
     private $db;
+    private $connection;
     private $id;
     private $nombre;
     private $email;
@@ -18,15 +19,15 @@ class Usuario{
     }
 
     public function iniciarSesion($email, $clave){
-        $query="SELECT * FROM usuarios WHERE email = ? AND clave = ?";
+        $query="SELECT * FROM usuarios WHERE email = ?";
         $stmt=$this->connection->prepare($query);
-        $stmt->execute([$email, $clave]);
+        $stmt->execute([$email]);
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
 
     public function registrar($nombre, $email, $clave, $fecha){
         $query="INSERT INTO usuarios (nombre, email, clave, fecha_creacion) VALUES (?, ?, ?, ?)";
-        $stmt=$this->db->prepare($query);
+        $stmt=$this->connection->prepare($query);
         return $stmt->execute([$nombre, $email, $clave, $fecha]);
     }
 
@@ -40,7 +41,7 @@ class Usuario{
     public function cerrarSesion(){
         $_SESSION=[];
         session_destroy();
-        header('Location: ');
+        header('Location: /');
         exit;
     }
 }

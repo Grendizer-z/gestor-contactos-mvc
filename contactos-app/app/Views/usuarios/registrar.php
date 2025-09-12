@@ -6,10 +6,10 @@
     <title>Document</title>
 </head>
 <body>
-     <form action="/contactos/registro" method="POST">
-            <input type="text" name="name" required>
-            <input type="email" name="email" required>
-            <input type="password" name="clave" required>
+     <form action="/registrar" method="POST">
+            <input type="text" name="nombre" placeholder="Nombre" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <input type="password" name="clave" placeholder="clave" required>
             <input type="submit" value="registrar">
         </form>
 </body>

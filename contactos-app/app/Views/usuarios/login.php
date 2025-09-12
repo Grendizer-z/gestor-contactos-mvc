@@ -11,7 +11,7 @@
             <input type="password" name="clave" required>
             <input type="submit" value="login">
         </form>
-        <a href="/contacto-app/public/registrar"> registrar</a>
+        <a href="/registrar"> registrar</a>
 </body>
 </html>
 
